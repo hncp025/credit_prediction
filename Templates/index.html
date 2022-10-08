@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Index-智慧型信用貸款違約預測與評估系統</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="本系統可以提供金融機構貸款部門更有效的預測顧客違約發生事件">
+  <link rel="icon" href="/static/images">
+  <link rel="stylesheet" href="/static/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+  <style>
+    te body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
+    body {
+      font-size: 16px;
+      background-color: #323948;
+    }
+
+    .w3-half img {
+      margin-bottom: -6px;
+      margin-top: 16px;
+      opacity: 0.8;
+      cursor: pointer
+    }
+
+    .w3-half img:hover {
+      opacity: 1
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- Sidebar/menu -->
+  <nav class="w3-sidebar w3-dark-gray w3-collapse w3-top w3-large w3-padding width:350px"
+    style="z-index:3;width:300px;font-weight:bold;" id="mySidebar">
+    <br>
+    <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft"
+      style="width:100%;font-size:22px">Close Menu</a>
+
+    <div class="w3-bar-block" style="margin-top: 20px;">
+      <a href="/" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-#ebeef1 w3-white"
+        style="color:#ebeef1;font-size:24px;">前言</a>
+      <a href="/data-review" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-#ebeef1"
+        style="color:#ebeef1;font-size:24px;">資料集介紹</a>
+      <a href="/data-process" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-#ebeef1 "
+        style="color:#ebeef1;font-size:24px;">資料預處理</a>
+        <a href="/machine-learning" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-#ebeef1"
+        style="color:#ebeef1;font-size:24px;">機器學習</a>
+      <!-- <a href="/choose_model" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-#ebeef1" style="color:#ebeef1;font-size:24px">模型選定</a> -->
+      <a href="/Conclusion" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-#ebeef1" style="color:#ebeef1;font-size:24px;">總結</a>
+      <a href="/interaction" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-#ebeef1"
+        style="color:#ebeef1;font-size:24px;">信用評級檢測互動區</a>
+    </div>
+  </nav>
+
+
+  <!-- Top menu on small screens -->
+  <header class="w3-container w3-top w3-hide-large w3-dark-gray w3-xlarge w3-padding ">
+    <a href="javascript:void(0)" class="w3-button w3-margin-right" style="color:#ebeef1" onclick="w3_open()">☰</a>
+    <span style="color: #F4DB7D"><b>智慧型信用貸款違約預測與評估系統</b></span></span>
+  </header>
+
+  <!-- Overlay effect when opening sidebar on small screens -->
+  <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu"
+    id="myOverlay"></div>
+
+  <!-- !PAGE CONTENT! -->
+  <div class="w3-main" style="margin-left:340px;margin-right:40px">
+
+    <!-- Header-->
+    <div class="header">
+      <h1 class="w3-jumbo w3-hide-medium w3-hide-small"><b>智慧型信用貸款違約預測與評估系統</b></h1>
+    </div>
+
+      <!-- Services -->
+    <div class="w3-container" id="services" style="margin-top:55px;margin-right: 30px;"> 
+
+      <div class="w3-xxxlarge">
+        <p style="font-weight: bold;">系統開發源起</p>
+        <div style="margin-left:30px;color: #ebeef1;font-size: 20px;">
+          <p>現代金融機構信用風險管理之基礎和重要環節在於核准信用貸款前能有效評價和識別借款人潛在信用違約風險，計算借款人的信用違約機率，
+            進而對借款人進行有效風險識別。傳統上，個人信用貸款的評估發放主要是基於個人資產、薪資、現金流、工作、搬遷紀錄和過去信貸記錄結合，
+            放款機構透過以上資料辨識他們會否有拖欠償還貸款造成違約的風險。假如某個工作或行業人士需要頻繁搬遷，放款機構一般會將此類經常性的流動視為不穩定的指標，
+            並可能會對提供信貸予這些人士持謹慎或拒絕態度。</p>
+        </div>
+      </div>
+
+
+      <br>
+      <div class="w3-xxlarge">
+        <p style="font-weight: bold;">是以，金融機構在提供客戶貸款方案時，經常面臨如下痛點：</p>
+      </div>
+        <div style="margin-left:30px;color: #ebeef1;font-size: 20px;">
+          <p>1.對於非傳統意義認定且具有還款能力的借款人，金融機構錯估其違約風險較高，以致拒絕提供信貸；<br>
+          2.如何以有限非平衡數據對歷史借款人的提交資料進行有效分析；<br>
+          3.對於未曾與銀行往來的客戶，缺乏歷史往來紀錄，難以判斷違約機率。</p>
+        </div>
+
+
+      <br>
+      <div class="w3-xxlarge">
+        <p style="font-weight: bold;">本組提供以下方法來解決上述困難，幫助金融機構提升判定客戶違約與否之正確率，達成提供更好客戶服務與增加金融機構利潤之雙贏目標。</p>
+      </div>
+        <div style="margin-left:30px;color: #ebeef1;font-size: 20px;">
+          <p>1.運用AI來更精準預測客戶是否會違約；<br>
+          2.擴大服務至傳統認為無法放貸的客戶，找出「有收入」且「有能力還款」的潛在客戶，並針對不同類別客戶推行有效信貸方案。</p>
+        </div>
+
+
+    <!-- End page content -->
+  <br>
+
+  <script>
+    // Script to open and close sidebar
+    function w3_open() {
+      document.getElementById("mySidebar").style.display = "block";
+      document.getElementById("myOverlay").style.display = "block";
+    }
+
+    function w3_close() {
+      document.getElementById("mySidebar").style.display = "none";
+      document.getElementById("myOverlay").style.display = "none";
+    }
+
+    // Modal Image Gallery
+    function onClick(element) {
+      document.getElementById("img01").src = element.src;
+      document.getElementById("modal01").style.display = "block";
+      var captionText = document.getElementById("caption");
+      captionText.innerHTML = element.alt;
+    }
+  </script>
+
+</body>
+
+</html>

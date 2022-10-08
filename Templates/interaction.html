@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Interaction-智慧型信用貸款違約預測與評估系統</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="本系統可以提供金融機構貸款部門更有效的預測顧客違約發生事件">
+  <link rel="icon" href="/static/images">
+  <link rel="stylesheet" href="/static/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+  <!-- STYLE ---------->
+  <style>
+      te body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
+      /* #Header{
+      　width:360px;
+      　height:80px;
+      　text-align:center;
+      　line-height:80px;
+      　font-size:15px;
+      　color:#fffaf3;
+      　font-weight:bold;
+      　background-color:#f9c81e;
+      } */
+      body {
+        font-size: 16px;
+        background-color:#323948 ;
+      }
+
+      .w3-half img {
+        margin-bottom: -6px;
+        margin-top: 16px;
+        opacity: 0.8;
+        cursor: pointer
+      }
+
+      .w3-half img:hover {
+        opacity: 1
+      }
+      .button {
+        display: inline-block;
+        border-radius: 4px;
+        background-color: #db6946;
+        border: none;
+        color: #ebeef1;
+        text-align: center;
+        font-size: 20px;
+        padding: 14px;
+        width: 200px;
+        transition: all 0.5s;
+        cursor: pointer;
+        margin: 5px;
+      }
+
+      .button span {
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        transition: 0.5s;
+      }
+
+      .button span:after {
+        content: '\00bb';
+        /* CSS Entities. 如果用的是 HTML Entities, 请改成 &#8594;*/
+        position: absolute;
+        opacity: 0;
+        top: 0;
+        right: -20px;
+      }
+
+      .button:hover span {
+        padding-right: 25px;
+      }
+  </style>
+</head>
+
+<body>
+
+  <!-- Sidebar/menu -->
+  <nav class="w3-sidebar w3-dark-gray w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;"
+    id="mySidebar"><br>
+    <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft"
+      style="width:100%;font-size:22px">Close Menu</a>
+    <div class="w3-bar-block" style="margin-top: 20px;">
+      <a href="/" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-#ebeef1"
+        style="color:#ebeef1;font-size:24px;">前言</a>
+      <a href="/data-review" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-#ebeef1"
+        style="color:#ebeef1;font-size:24px;">資料集介紹</a>
+      <a href="/data-process" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-#ebeef1"
+        style="color:#ebeef1;font-size:24px;">資料預處理</a>
+        <a href="/machine-learning" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-#ebeef1"
+        style="color:#ebeef1;font-size:24px;">機器學習</a>
+      <!-- <a href="/choose_model" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-#ebeef1" style="color:#ebeef1;font-size:24px">模型選定</a> -->
+      <a href="/Conclusion" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-#ebeef1 " style="color:#ebeef1;font-size:24px;">總結</a>
+      <a href="/interaction" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-#ebeef1 w3-white" 
+        style="color:#ebeef1;font-size:24px;">信用評級檢測互動區</a>
+    </div>
+  </nav>
+
+ <!-- Top menu on small screens -->
+  <header class="w3-container w3-top w3-hide-large w3-dark-gray w3-xlarge w3-padding ">
+    <a href="javascript:void(0)" class="w3-button w3-margin-right" style="color:#ebeef1" onclick="w3_open()">☰</a>
+    <span style="color: #F4DB7D"><b>智慧型信用貸款違約預測與評估系統</b></span></span>
+  </header>
+
+  <!-- Overlay effect when opening sidebar on small screens -->
+  <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu"
+    id="myOverlay"></div>
+
+  <!-- !PAGE CONTENT! -->
+  <div class="w3-main" style="margin-left:340px;margin-right:40px">
+
+    <!-- Header -->
+    <div class="header">
+      <h1 class="w3-jumbo w3-hide-medium w3-hide-small"><b>智慧型信用貸款違約預測與評估系統</b></h1>
+    </div>
+
+    <!-- Contact -->
+    <div class="w3-container" id="contact" style="margin-top:55px">
+        <div class="level1">
+          <h1 class="w3-xxxlarge"  style="margin-top: 40px;"><b>信用評級檢測</b></h1>
+          <div id="item" class="w3-panel" style="font-size: 24px;color:#ebeef1" >
+            <form method="GET" onsubmit="return chk();" action="/output">
+              <label class="w3-xxlarge" style="font-weight:bold;">測驗看看，您的客戶是否有可能違約？</label>
+              <p></p>
+              <p></p>
+              教育類別：<select name="arg1" required>
+                <option value="">請下拉選擇</option>
+                <option value="Lower secondary">國小</option>
+                <!--<Lower secondary-->
+                <option value="Secondary / secondary special">國高中</option>
+                <!--<Secondary/secondary special-->
+                <option value="Incomplete higher">大學肄業</option>
+                <!--<Incomplete higher -->
+                <option value="Higher education">學士</option>
+                <!--<Higher education-->
+                <option value="Academic degree">碩士</option>
+                <!--<Academic degree-->
+              </select>
+              <p></p>
+              信用機構一評分：<input type="text"  placeholder="請填入0~1數值(可輸入小數)" autocomplete="off" name="arg2" required><br>
+              <br>
+              信用機構二評分：<input type="text"  placeholder="請填入0~1數值(可輸入小數)" autocomplete="off" name="arg3" required><br>
+              <p></p>
+              受雇年數：<input type="text" placeholder="請填入整數" autocomplete="off" name="arg4" required><p></p>
+              所在居住地區評分：<select name="arg5" required>
+                <option value="">請下拉選擇</option>
+                <option value="1">評級一</option>
+                <option value="2">評級二</option>
+                <option value="3">評級三</option>
+              </select>
+              <br><br>
+              <button class="button" style="vertical-align:middle" onclick="clickMe();"><span>點我做評分 &#8594</span></button>
+            </form>
+          </div>
+        </div>
+        
+  
+    </div>
+
+    <!-- End page content -->
+  </div>
+
+  <br>
+
+
+  <script>
+    // Script by vvan
+    function chk(){
+            var arg2=document.getElementsByName('arg2')[0];
+            if(arg2.value <0 || arg2.value > 1){
+                alert ('信用機構一評分格式有誤，請重新輸入');
+                return false;
+            }
+            var arg3=document.getElementsByName('arg3')[0];
+            if(arg3.value <0 || arg3.value > 1){
+                alert ('信用機構二評分格式有誤，請重新輸入');
+                return false;
+            }
+            var arg4=document.getElementsByName('arg4')[0];
+            if(arg4.value > 50 || arg4.value < 0){
+                alert ('雇用年資格式有誤，請重新輸入');
+                return false;
+            }
+        }
+    // Script to open and close sidebar
+    function w3_open() {
+      document.getElementById("mySidebar").style.display = "block";
+      document.getElementById("myOverlay").style.display = "block";
+    }
+
+    function w3_close() {
+      document.getElementById("mySidebar").style.display = "none";
+      document.getElementById("myOverlay").style.display = "none";
+    }
+
+    // Modal Image Gallery
+    function onClick(element) {
+      document.getElementById("img01").src = element.src;
+      document.getElementById("modal01").style.display = "block";
+      var captionText = document.getElementById("caption");
+      captionText.innerHTML = element.alt;
+    }
+  </script>
+
+</body>
+
+</html>

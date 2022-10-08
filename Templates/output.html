@@ -1,0 +1,1514 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- STYLE ---------->
+  <style>
+    te body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
+    body {
+      font-size: 16px;
+      background-color:lightgray ;
+    }
+    #DIV1{
+      max-width:100%;
+      max-height:100%;
+      /* background-color:rgba(231, 220, 168, 0.993);　可換背景顏色 */
+      border:1px #ccc solid;
+      background-size: 100%;
+    }
+    .w3-half img {
+      margin-bottom: -6px;
+      margin-top: 16px;
+      opacity: 0.8;
+      cursor: pointer
+    }
+
+    .w3-half img:hover {
+      opacity: 1
+    }
+    .button {
+      display: inline-block;
+      border-radius: 4px;
+      background-color: #db6946;
+      border: none;
+      color: #ebeef1;
+      text-align: center;
+      font-size: 14px;
+      padding: 14px;
+      width: 250px;
+      transition: all 0.5s;
+      cursor: pointer;
+      margin: 5px;
+    }
+
+    .button span {
+      cursor: pointer;
+      display: inline-block;
+      position: relative;
+      transition: 0.5s;
+    }
+
+    .button span:after {
+      content: '\00bb';
+      /* CSS Entities. 如果用的是 HTML Entities, 请改成 &#8594;*/
+      position: absolute;
+      opacity: 0;
+      top: 0;
+      right: -20px;
+    }
+
+    .button:hover span {
+      padding-right: 25px;
+    }
+  </style>
+
+  <!-- HEAD ---------->
+  <title>Interaction-智慧型信用貸款違約預測與評估系統</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="icon" href="/static/images">
+  <link rel="stylesheet" href="/static/w3.css">
+  
+  <!-- <link rel="stylesheet" href="w3.css"> -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+  
+</head>
+
+<body>
+
+
+  <!-- Sidebar/menu -->
+  <nav class="w3-sidebar w3-dark-gray w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;"
+    id="mySidebar"><br>
+    <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft"
+      style="width:100%;font-size:22px">Close Menu</a>
+    <div class="w3-bar-block" style="margin-top: 20px;">
+      <a href="/" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-#ebeef1"
+        style="color:#ebeef1;font-size:24px;">前言</a>
+      <a href="/data-review" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-#ebeef1"
+        style="color:#ebeef1;font-size:24px;">資料集介紹</a>
+      <a href="/data-process" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-#ebeef1"
+        style="color:#ebeef1;font-size:24px;">資料預處理</a>
+        <a href="/machine-learning" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-#ebeef1"
+        style="color:#ebeef1;font-size:24px;">機器學習</a>
+      <!-- <a href="/choose_model" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-#ebeef1" style="color:#ebeef1;font-size:24px">模型選定</a> -->
+      <a href="/Conclusion" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-#ebeef1" style="color:#ebeef1;font-size:24px;">總結</a>
+      <a href="/interaction" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-#ebeef1 w3-white"
+        style="color:#ebeef1;font-size:24px;">信用評級檢測互動區</a>
+    </div>
+      <!--
+    <a href="#contact2" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-#ebeef1" style="color:white;">機器模型</a>
+  -->
+  </nav>
+
+ <!-- Top menu on small screens -->
+  <header class="w3-container w3-top w3-hide-large w3-dark-gray w3-xlarge w3-padding ">
+    <a href="javascript:void(0)" class="w3-button w3-margin-right" style="color:#ebeef1" onclick="w3_open()">☰</a>
+    <span style="color: #F4DB7D"><b>智慧型信用貸款違約預測與評估系統</b></span></span>
+  </header>
+
+  <!-- Overlay effect when opening sidebar on small screens -->
+  <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu"
+    id="myOverlay"></div>
+
+  <!-- !PAGE CONTENT! -->
+  <div class="w3-main" style="margin-left:340px;margin-right:40px">
+
+    <!-- Header -->
+    <div class="header">
+      <h1 class="w3-jumbo w3-hide-medium w3-hide-small" style="color:#323948"><b>智慧型信用貸款違約預測與評估系統</b></h1>
+    </div>
+
+    <div style="margin-top:55px;margin-right: 30px;">
+      <!-- <p class="w3-xxlarge">預測結果</p> -->
+    </div>
+
+    <!-- 方塊背景START!! ---------------->
+    <div id="DIV1">
+
+      <!--Model&Picture-->
+      <div style="text-align:center;font-weight: bold;">
+        <!-- Prediction of Your Credit: -->
+        <br><br><br>
+        <p class="w3-xxxlarge" style="color:#323948;">此顧客是否會違約: {{target}}</p>
+
+
+      <!-- Styles -->
+      <style>
+        #chartdiv0 {
+          width: 100%;
+          height: 500px;
+        }
+        </style>
+        
+        <!-- Resources -->
+        <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+        <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+        <script src="https://cdn.amcharts.com/lib/5/radar.js"></script>
+        <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+        
+        <!-- Chart code -->
+        <script>
+        am5.ready(function() {
+        
+        // Create root element
+        // https://www.amcharts.com/docs/v5/getting-started/#Root_element
+        var root = am5.Root.new("chartdiv0");
+        
+        // Set themes
+        // https://www.amcharts.com/docs/v5/concepts/themes/
+        root.setThemes([
+          am5themes_Animated.new(root)
+        ]);
+        
+        
+        // Create chart
+        // https://www.amcharts.com/docs/v5/charts/radar-chart/
+        var chart = root.container.children.push(am5radar.RadarChart.new(root, {
+          panX: false,
+          panY: false,
+          startAngle: 180,
+          endAngle: 360
+        }));
+        
+        
+        // Create axis and its renderer
+        // https://www.amcharts.com/docs/v5/charts/radar-chart/gauge-charts/#Axes
+        var axisRenderer = am5radar.AxisRendererCircular.new(root, {
+          innerRadius: -30,
+          strokeOpacity: 0.1
+        });
+        
+        axisRenderer.labels.template.set("forceHidden", true);
+        axisRenderer.grid.template.set("forceHidden", true);
+        
+        var xAxis = chart.xAxes.push(am5xy.ValueAxis.new(root, {
+          maxDeviation: 0,
+          min: 0,
+          max: 1,
+          strictMinMax: true,
+          renderer: axisRenderer
+        }));
+        
+        
+        // add yes and no labels
+        var yesDataItem = xAxis.makeDataItem({});
+        yesDataItem.set("value", 0);
+        yesDataItem.set("endValue", 0.5);
+        xAxis.createAxisRange(yesDataItem);
+        yesDataItem.get("label").setAll({text: "不會違約", forceHidden:false});
+        yesDataItem.get("axisFill").setAll({visible:true, fillOpacity:1, fill:root.interfaceColors.get("positive")});
+        
+        var noDataItem = xAxis.makeDataItem({});
+        noDataItem.set("value", 1);
+        noDataItem.set("endValue", 0.5);
+        xAxis.createAxisRange(noDataItem);
+        noDataItem.get("label").setAll({text: "會違約", forceHidden:false});
+        noDataItem.get("axisFill").setAll({visible:true, fillOpacity:1, fill:root.interfaceColors.get("negative")});
+        
+        // Add clock hand
+        // https://www.amcharts.com/docs/v5/charts/radar-chart/gauge-charts/#Clock_hands
+        var axisDataItem = xAxis.makeDataItem({});
+        axisDataItem.set("value", 0.5);
+        
+        var bullet = axisDataItem.set("bullet", am5xy.AxisBullet.new(root, {
+          sprite: am5radar.ClockHand.new(root, {
+            radius: am5.percent(99)
+          })
+        }));
+        
+        xAxis.createAxisRange(axisDataItem);
+        
+        axisDataItem.get("grid").set("visible", false);
+        
+        var Targetvar = '{{target}}';
+        
+        setInterval(function() {
+          if (Targetvar == '會違約') {
+            value = 0.75;
+          }
+          else {
+            value = 0.25;
+          }
+        
+          axisDataItem.animate({
+            key: "value",
+            to: value,
+            duration: 800,
+            easing: am5.ease.out(am5.ease.cubic)
+          });
+        }, 2000);
+        
+        
+        // Make stuff animate on load
+        chart.appear(1000, 100);
+        
+        }); // end am5.ready()
+        </script>
+        
+        <!-- HTML -->
+        <div id="chartdiv0"></div>
+            <br><br><br>
+        
+        
+          <p class="w3-xxxlarge" style="color:#323948;">此顧客的教育程度為: {{arg1}}</p>
+        
+            <!-- Styles -->
+        <style>
+        #chartdiv {
+          width: 100%;
+          height: 500px;
+        }
+        </style>
+        
+        <!-- Resources -->
+        <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+        <script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
+        <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+        
+        
+        <!-- Chart code -->
+        <script>
+        am5.ready(function() {
+        
+        // Create root element
+        // https://www.amcharts.com/docs/v5/getting-started/#Root_element
+        var root = am5.Root.new("chartdiv");
+        
+        
+        // Set themes
+        // https://www.amcharts.com/docs/v5/concepts/themes/
+        root.setThemes([
+          am5themes_Animated.new(root)
+        ]);
+        
+        
+        // Create chart
+        // https://www.amcharts.com/docs/v5/charts/percent-charts/pie-chart/
+        var chart = root.container.children.push(am5percent.PieChart.new(root, {
+          layout: root.verticalLayout
+        }));
+        
+        
+        // Create series
+        // https://www.amcharts.com/docs/v5/charts/percent-charts/pie-chart/#Series
+        var series = chart.series.push(am5percent.PieSeries.new(root, {
+          valueField: "value",
+          categoryField: "category"
+        }));
+        
+        
+        // Set data
+        // https://www.amcharts.com/docs/v5/charts/percent-charts/pie-chart/#Setting_data
+        series.data.setAll([
+          { value: 3815, category: "國小" },
+          { value: 218386, category: "國高中" },
+          { value: 10276, category: "大學肄業" },
+          { value: 74856, category: "學士" },
+          { value: 164, category: "碩士" },
+        ]);
+        
+        
+        // Create legend
+        // https://www.amcharts.com/docs/v5/charts/percent-charts/legend-percent-series/
+        var legend = chart.children.push(am5.Legend.new(root, {
+          centerX: am5.percent(50),
+          x: am5.percent(50),
+          marginTop: 15,
+          marginBottom: 15
+        }));
+        
+        legend.data.setAll(series.dataItems);
+        
+        
+        // Play initial series animation
+        // https://www.amcharts.com/docs/v5/concepts/animations/#Animation_of_series
+        series.appear(1000, 100);
+        
+        }); // end am5.ready()
+        </script>
+        
+        <!-- HTML -->
+        <div id="chartdiv"></div>
+        
+        <br><br><br>
+        <p class="w3-xxxlarge" style="color:#323948;">此顧客的第一份信用機構評分: {{arg2}}</p>
+        
+        
+        <!-- Styles -->
+        <style>
+        #chartdiv1 {
+          width: 100%;
+          height: 130px;
+        }
+        </style>
+        
+        <!-- Resources -->
+        <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+        <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+        <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+        
+        <!-- Chart code -->
+        <script>
+        am5.ready(function() {
+        
+        // Create root element
+        // https://www.amcharts.com/docs/v5/getting-started/#Root_element
+        var root = am5.Root.new("chartdiv1");
+        
+        
+        // Set themes
+        // https://www.amcharts.com/docs/v5/concepts/themes/
+        root.setThemes([
+          am5themes_Animated.new(root)
+        ]);
+        
+        
+        // Create chart
+        // https://www.amcharts.com/docs/v5/charts/xy-chart/
+        var chart = root.container.children.push(am5xy.XYChart.new(root, {
+          panX: false,
+          panY: false,
+          wheelX: "none",
+          wheelY: "none",
+          layout: root.verticalLayout,
+          paddingRight: 30
+        }));
+        
+        
+        // Add legend
+        // https://www.amcharts.com/docs/v5/charts/xy-chart/legend-xy-series/
+        var legend = chart.children.push(
+          am5.Legend.new(root, {
+            centerX: am5.p50,
+            x: am5.p50
+          })
+        );
+        
+        var data = [{
+            category: "12",
+            // value 指圖塊的高度
+            value: 100,  
+            targetBullet: true,
+            columnSettings: {
+              fill: am5.color(0xd3d3d3)
+            }
+          }, {
+          category: "1",
+          value: 100,
+          columnSettings: {
+            fill: am5.color(0xc6251a)
+          }
+        }, {
+          category: "2",
+          value: 100,
+          currentBullet: true,
+          columnSettings: {
+            fill: am5.color(0xc6251a)
+          }
+        }, {
+          category: "3",
+          value: 100,
+          columnSettings: {
+            fill: am5.color(0xffa500)
+          }
+        }, {
+          category: "4",
+          value: 100,
+          columnSettings: {
+            fill: am5.color(0xffff00)
+          }
+        }, {
+          category: "5",
+          value: 100,
+          columnSettings: {
+            fill: am5.color(0xffff00)
+          }
+        }, {
+          category: "6",
+          value: 100,
+          columnSettings: {
+            fill: am5.color(0xadff2f)
+          }
+        }, {
+          category: "7",
+          value: 100,
+          columnSettings: {
+            fill: am5.color(0x6bc352)
+          }
+        }, {
+          category: "8",
+          value: 100,
+          columnSettings: {
+            fill: am5.color(0x6bc352)
+          }
+        }, {
+          category: "9",
+          value: 100,
+          columnSettings: {
+            fill: am5.color(0x20b2aa)
+          }
+        }, {
+          category: "10",
+          value: 100,
+          columnSettings: {
+            fill: am5.color(0x0000ff)
+          }
+        }, {
+          category: "11",
+          value: 100,
+          columnSettings: {
+            fill: am5.color(0x0000ff)
+          }
+        }];
+        
+        
+        // Create axes
+        // https://www.amcharts.com/docs/v5/charts/xy-chart/axes/
+        var xAxis = chart.xAxes.push(am5xy.CategoryAxis.new(root, {
+          categoryField: "category",
+          renderer: am5xy.AxisRendererX.new(root, {
+        
+          }),
+          tooltip: am5.Tooltip.new(root, {})
+        }));
+        
+        var xRenderer = xAxis.get("renderer");
+        
+        xRenderer.grid.template.set("forceHidden", true);
+        xRenderer.labels.template.set("forceHidden", true);
+        
+        xAxis.data.setAll(data);
+        
+        var yAxis = chart.yAxes.push(am5xy.ValueAxis.new(root, {
+          min: 0,
+          max: 400,
+          strictMinMax: true,
+          renderer: am5xy.AxisRendererY.new(root, {})
+        }));
+        
+        var yRenderer = yAxis.get("renderer");
+        
+        yRenderer.grid.template.set("forceHidden", true);
+        yRenderer.labels.template.set("forceHidden", true);
+        
+        
+        // Add series
+        // https://www.amcharts.com/docs/v5/charts/xy-chart/series/
+        
+        var series = chart.series.push(am5xy.ColumnSeries.new(root, {
+          xAxis: xAxis,
+          yAxis: yAxis,
+          valueYField: "value",
+          categoryXField: "category",
+          maskBullets: false
+        }));
+        
+        series.columns.template.setAll({
+          //tooltipText: "{categoryX}: {valueY}",
+          width: am5.p100,
+          tooltipY: 0,
+          strokeOpacity: 1,
+          strokeWidth:2,
+          stroke:am5.color(0xffffff),
+          templateField: "columnSettings"
+        });
+        
+        var chart_color = 'red'
+        var ext2_pct = parseInt('{{ext2_pct}}')
+        
+        if (ext2_pct < 25){
+          chart_color = am5.color(0xc6251a)
+        }
+        else if(ext2_pct == 25){
+          chart_color = am5.color(0xffa500)
+        }
+        else if (ext2_pct < 50) {
+          chart_color = am5.color(0xffff00)
+        }
+        else if (ext2_pct == 50) {
+          chart_color = am5.color(0xadff2f)
+        }
+        else if (ext2_pct < 75) {
+          chart_color = am5.color(0x6bc352)
+        }
+        else if (ext2_pct == 75) {
+          chart_color = am5.color(0x20b2aa)
+        }
+        else if (ext2_pct <= 100) {
+          chart_color = am5.color(0x0000ff)
+        };
+        
+        var pin_dx = 0;
+        
+        if (ext2_pct < 12.5){
+          pin_dx = -120
+        }
+        else if(ext2_pct < 25){
+          pin_dx = 0
+        }
+        else if(ext2_pct == 25){
+          pin_dx = 120
+        }
+        else if (ext2_pct < 37.5) {
+          pin_dx = 240
+        }
+        else if (ext2_pct < 50) {
+          pin_dx = 360
+        }
+        else if (ext2_pct == 50) {
+          pin_dx = 480
+        }
+        else if (ext2_pct < 62.5) {
+          pin_dx = 600
+        }
+        else if (ext2_pct < 75) {
+          pin_dx = 720
+        }
+        else if (ext2_pct == 75) {
+          pin_dx = 840
+        }
+        else if (ext2_pct < 87.5) {
+          pin_dx = 960
+        }
+        else if (ext2_pct <= 100) {
+          pin_dx = 1080
+        };
+        
+        series.bullets.push(function(root, target, dataItem) {
+          if (dataItem.dataContext.currentBullet) {
+            var container = am5.Container.new(root, {});
+            
+            var pin = container.children.push(am5.Graphics.new(root, {
+              fill: chart_color,
+              dx: pin_dx,
+              dy: -5,
+              centerY: am5.p100,
+              centerX: am5.p50,
+              svgPath: "M66.9 41.8c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4 0 11.3 20.4 32.4 20.4 32.4s20.4-21.1 20.4-32.4zM37 41.4c0-5.2 4.3-9.5 9.5-9.5s9.5 4.2 9.5 9.5c0 5.2-4.2 9.5-9.5 9.5-5.2 0-9.5-4.3-9.5-9.5z"
+            }));
+            
+            var label = container.children.push(am5.Label.new(root, {
+              text: '{{ext2_pct}}%',
+              // + % (to do)
+              dx: pin_dx,
+              dy: -38,
+              centerY: am5.p50,
+              centerX: am5.p50,
+              populateText: true,
+              paddingTop: 5,
+              paddingRight: 5,
+              paddingBottom: 5,
+              paddingLeft: 5,
+              background: am5.RoundedRectangle.new(root, {
+                fill: am5.color(0xffffff),
+                cornerRadiusTL: 20,
+                cornerRadiusTR: 20,
+                cornerRadiusBR: 20,
+                cornerRadiusBL: 20,
+              })
+            }));
+            
+            return am5.Bullet.new(root, {
+              locationY: 1,
+              sprite: container
+            });
+          }
+          else if (dataItem.dataContext.targetBullet) {
+            var container = am5.Container.new(root, {
+              dx: 15
+            });
+            
+            var circle = container.children.push(am5.Circle.new(root, {
+              radius: 34,
+              fill: am5.color(0xc6251a),
+            }));
+            
+            var label = container.children.push(am5.Label.new(root, {
+              text: "[bold]ZERO[/]",
+              textAlign: "center",
+              //fontSize: "10",
+              fill: am5.color(0xffffff),
+              centerY: am5.p50,
+              centerX: am5.p50,
+              populateText: true,
+            }));
+            return am5.Bullet.new(root, {
+              locationY: 0.5,
+              sprite: container
+            });
+          }
+          return false;
+        });
+        
+        series.data.setAll(data);
+        
+        // Add labels
+        function addAxisLabel(category, text) {
+          var rangeDataItem = xAxis.makeDataItem({
+            category: category
+          });
+          
+          var range = xAxis.createAxisRange(rangeDataItem);
+        
+          range.get("label").setAll({
+            //fill: am5.color(0xffffff),
+            text: text,
+            forceHidden: false
+          });
+        
+          range.get("grid").setAll({
+            //stroke: color,
+            strokeOpacity: 1,
+            location: 1
+          });
+        }
+        
+        
+        addAxisLabel("9", "Q3 (75%)");
+        addAxisLabel("6", "MEDIAN (50%)");
+        addAxisLabel("3", "Q1 (25%)");
+        
+        
+        
+        // Make stuff animate on load
+        // https://www.amcharts.com/docs/v5/concepts/animations/
+        series.appear(1000, 100);
+        chart.appear(1000, 100);
+        
+        }); // end am5.ready()
+        </script>
+        
+        <!-- HTML -->
+        <div id="chartdiv1"></div>
+        
+        <br><br><br>
+        <p class="w3-xxxlarge" style="color:#323948;">此顧客的第二份信用機構評分: {{arg3}}</p>
+        
+        <!-- Styles -->
+        <style>
+        #chartdiv2 {
+          width: 100%;
+          height: 130px;
+        }
+        </style>
+        
+        <!-- Resources -->
+        <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+        <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+        <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+        
+        <!-- Chart code -->
+        <script>
+        am5.ready(function() {
+        
+        // Create root element
+        // https://www.amcharts.com/docs/v5/getting-started/#Root_element
+        var root = am5.Root.new("chartdiv2");
+        
+        
+        // Set themes
+        // https://www.amcharts.com/docs/v5/concepts/themes/
+        root.setThemes([
+          am5themes_Animated.new(root)
+        ]);
+        
+        
+        // Create chart
+        // https://www.amcharts.com/docs/v5/charts/xy-chart/
+        var chart = root.container.children.push(am5xy.XYChart.new(root, {
+          panX: false,
+          panY: false,
+          wheelX: "none",
+          wheelY: "none",
+          layout: root.verticalLayout,
+          paddingRight: 30
+        }));
+        
+        
+        // Add legend
+        // https://www.amcharts.com/docs/v5/charts/xy-chart/legend-xy-series/
+        var legend = chart.children.push(
+          am5.Legend.new(root, {
+            centerX: am5.p50,
+            x: am5.p50
+          })
+        );
+        
+        var data = [{
+            category: "12",
+            // value 指圖塊的高度
+            value: 100,  
+            targetBullet: true,
+            columnSettings: {
+              fill: am5.color(0xd3d3d3)
+            }
+          }, {
+          category: "1",
+          value: 100,
+          columnSettings: {
+            fill: am5.color(0xc6251a)
+          }
+        }, {
+          category: "2",
+          value: 100,
+          currentBullet: true,
+          columnSettings: {
+            fill: am5.color(0xc6251a)
+          }
+        }, {
+          category: "3",
+          value: 100,
+          columnSettings: {
+            fill: am5.color(0xffa500)
+          }
+        }, {
+          category: "4",
+          value: 100,
+          columnSettings: {
+            fill: am5.color(0xffff00)
+          }
+        }, {
+          category: "5",
+          value: 100,
+          columnSettings: {
+            fill: am5.color(0xffff00)
+          }
+        }, {
+          category: "6",
+          value: 100,
+          columnSettings: {
+            fill: am5.color(0xadff2f)
+          }
+        }, {
+          category: "7",
+          value: 100,
+          columnSettings: {
+            fill: am5.color(0x6bc352)
+          }
+        }, {
+          category: "8",
+          value: 100,
+          columnSettings: {
+            fill: am5.color(0x6bc352)
+          }
+        }, {
+          category: "9",
+          value: 100,
+          columnSettings: {
+            fill: am5.color(0x20b2aa)
+          }
+        }, {
+          category: "10",
+          value: 100,
+          columnSettings: {
+            fill: am5.color(0x0000ff)
+          }
+        }, {
+          category: "11",
+          value: 100,
+          columnSettings: {
+            fill: am5.color(0x0000ff)
+          }
+        }];
+        
+        
+        // Create axes
+        // https://www.amcharts.com/docs/v5/charts/xy-chart/axes/
+        var xAxis = chart.xAxes.push(am5xy.CategoryAxis.new(root, {
+          categoryField: "category",
+          renderer: am5xy.AxisRendererX.new(root, {
+        
+          }),
+          tooltip: am5.Tooltip.new(root, {})
+        }));
+        
+        var xRenderer = xAxis.get("renderer");
+        
+        xRenderer.grid.template.set("forceHidden", true);
+        xRenderer.labels.template.set("forceHidden", true);
+        
+        xAxis.data.setAll(data);
+        
+        var yAxis = chart.yAxes.push(am5xy.ValueAxis.new(root, {
+          min: 0,
+          max: 400,
+          strictMinMax: true,
+          renderer: am5xy.AxisRendererY.new(root, {})
+        }));
+        
+        var yRenderer = yAxis.get("renderer");
+        
+        yRenderer.grid.template.set("forceHidden", true);
+        yRenderer.labels.template.set("forceHidden", true);
+        
+        
+        // Add series
+        // https://www.amcharts.com/docs/v5/charts/xy-chart/series/
+        
+        var series = chart.series.push(am5xy.ColumnSeries.new(root, {
+          xAxis: xAxis,
+          yAxis: yAxis,
+          valueYField: "value",
+          categoryXField: "category",
+          maskBullets: false
+        }));
+        
+        series.columns.template.setAll({
+          //tooltipText: "{categoryX}: {valueY}",
+          width: am5.p100,
+          tooltipY: 0,
+          strokeOpacity: 1,
+          strokeWidth:2,
+          stroke:am5.color(0xffffff),
+          templateField: "columnSettings"
+        });
+        
+        var chart_color = 'red'
+        var ext3_pct = parseInt('{{ext3_pct}}')
+        
+        if (ext3_pct < 25){
+          chart_color = am5.color(0xc6251a)
+        }
+        else if(ext3_pct == 25){
+          chart_color = am5.color(0xffa500)
+        }
+        else if (ext3_pct < 50) {
+          chart_color = am5.color(0xffff00)
+        }
+        else if (ext3_pct == 50) {
+          chart_color = am5.color(0xadff2f)
+        }
+        else if (ext3_pct < 75) {
+          chart_color = am5.color(0x6bc352)
+        }
+        else if (ext3_pct == 75) {
+          chart_color = am5.color(0x20b2aa)
+        }
+        else if (ext3_pct <= 100) {
+          chart_color = am5.color(0x0000ff)
+        };
+        
+        var pin_dx = 0;
+        
+        if (ext3_pct < 12.5){
+          pin_dx = -120
+        }
+        else if(ext3_pct < 25){
+          pin_dx = 0
+        }
+        else if(ext3_pct == 25){
+          pin_dx = 120
+        }
+        else if (ext3_pct < 37.5) {
+          pin_dx = 240
+        }
+        else if (ext3_pct < 50) {
+          pin_dx = 360
+        }
+        else if (ext3_pct == 50) {
+          pin_dx = 480
+        }
+        else if (ext3_pct < 62.5) {
+          pin_dx = 600
+        }
+        else if (ext3_pct < 75) {
+          pin_dx = 720
+        }
+        else if (ext3_pct == 75) {
+          pin_dx = 840
+        }
+        else if (ext3_pct < 87.5) {
+          pin_dx = 960
+        }
+        else if (ext3_pct <= 100) {
+          pin_dx = 1080
+        };
+        
+        series.bullets.push(function(root, target, dataItem) {
+          if (dataItem.dataContext.currentBullet) {
+            var container = am5.Container.new(root, {});
+            
+            var pin = container.children.push(am5.Graphics.new(root, {
+              fill: chart_color,
+              dx: pin_dx,
+              dy: -5,
+              centerY: am5.p100,
+              centerX: am5.p50,
+              svgPath: "M66.9 41.8c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4 0 11.3 20.4 32.4 20.4 32.4s20.4-21.1 20.4-32.4zM37 41.4c0-5.2 4.3-9.5 9.5-9.5s9.5 4.2 9.5 9.5c0 5.2-4.2 9.5-9.5 9.5-5.2 0-9.5-4.3-9.5-9.5z"
+            }));
+            
+            var label = container.children.push(am5.Label.new(root, {
+              text: '{{ext3_pct}}%',
+              // + % (to do)
+              dx: pin_dx,
+              dy: -38,
+              centerY: am5.p50,
+              centerX: am5.p50,
+              populateText: true,
+              paddingTop: 5,
+              paddingRight: 5,
+              paddingBottom: 5,
+              paddingLeft: 5,
+              background: am5.RoundedRectangle.new(root, {
+                fill: am5.color(0xffffff),
+                cornerRadiusTL: 20,
+                cornerRadiusTR: 20,
+                cornerRadiusBR: 20,
+                cornerRadiusBL: 20,
+              })
+            }));
+            
+            return am5.Bullet.new(root, {
+              locationY: 1,
+              sprite: container
+            });
+          }
+          else if (dataItem.dataContext.targetBullet) {
+            var container = am5.Container.new(root, {
+              dx: 15
+            });
+            
+            var circle = container.children.push(am5.Circle.new(root, {
+              radius: 34,
+              fill: am5.color(0xc6251a),
+            }));
+            
+            var label = container.children.push(am5.Label.new(root, {
+              text: "[bold]ZERO[/]",
+              textAlign: "center",
+              //fontSize: "10",
+              fill: am5.color(0xffffff),
+              centerY: am5.p50,
+              centerX: am5.p50,
+              populateText: true,
+            }));
+            return am5.Bullet.new(root, {
+              locationY: 0.5,
+              sprite: container
+            });
+          }
+          return false;
+        });
+        
+        series.data.setAll(data);
+        
+        // Add labels
+        function addAxisLabel(category, text) {
+          var rangeDataItem = xAxis.makeDataItem({
+            category: category
+          });
+          
+          var range = xAxis.createAxisRange(rangeDataItem);
+        
+          range.get("label").setAll({
+            //fill: am5.color(0xffffff),
+            text: text,
+            forceHidden: false
+          });
+        
+          range.get("grid").setAll({
+            //stroke: color,
+            strokeOpacity: 1,
+            location: 1
+          });
+        }
+        
+        
+        addAxisLabel("9", "Q3 (75%)");
+        addAxisLabel("6", "MEDIAN (50%)");
+        addAxisLabel("3", "Q1 (25%)");
+        
+        
+        
+        // Make stuff animate on load
+        // https://www.amcharts.com/docs/v5/concepts/animations/
+        series.appear(1000, 100);
+        chart.appear(1000, 100);
+        
+        }); // end am5.ready()
+        </script>
+        
+        <!-- HTML -->
+        <div id="chartdiv2"></div>
+        
+        <br><br><br>
+        <p class="w3-xxxlarge" style="color:#323948;">此顧客的受雇年數: {{arg4}}</p>
+        
+        
+        
+        <!-- Styles -->
+        <style>
+        #chartdiv3 {
+          width: 100%;
+          height: 400px;
+        }
+        </style>
+        
+        <!-- Resources -->
+        <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+        <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+        <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+        
+        <!-- Chart code -->
+        <script>
+        am5.ready(function() {
+        
+        // Create root element
+        // https://www.amcharts.com/docs/v5/getting-started/#Root_element
+        var root = am5.Root.new("chartdiv3");
+        
+        
+        // Set themes
+        // https://www.amcharts.com/docs/v5/concepts/themes/
+        root.setThemes([am5themes_Animated.new(root)]);
+        
+        
+        // Create chart
+        // https://www.amcharts.com/docs/v5/charts/xy-chart/
+        var chart = root.container.children.push(
+          am5xy.XYChart.new(root, {
+            panX: false,
+            panY: false,
+            wheelX: "none",
+            wheelY: "none"
+          })
+        );
+        
+        
+        // Create axes
+        // https://www.amcharts.com/docs/v5/charts/xy-chart/axes/
+        var yRenderer = am5xy.AxisRendererY.new(root, { minGridDistance: 30 });
+        
+        var yAxis = chart.yAxes.push(
+          am5xy.CategoryAxis.new(root, {
+            maxDeviation: 0,
+            categoryField: "YEARS_EMPLOYED",
+            renderer: yRenderer
+          })
+        );
+        
+        var xAxis = chart.xAxes.push(
+          am5xy.ValueAxis.new(root, {
+            maxDeviation: 0,
+            min: 0,
+            renderer: am5xy.AxisRendererX.new(root, {})
+          })
+        );
+        
+        
+        // Create series
+        // https://www.amcharts.com/docs/v5/charts/xy-chart/series/
+        var series = chart.series.push(
+          am5xy.ColumnSeries.new(root, {
+            name: "Series 1",
+            xAxis: xAxis,
+            yAxis: yAxis,
+            valueXField: "value",
+            sequencedInterpolation: true,
+            categoryYField: "YEARS_EMPLOYED"
+          })
+        );
+        
+        var columnTemplate = series.columns.template;
+        
+        columnTemplate.setAll({
+          draggable: true,
+          cursorOverStyle: "pointer",
+          tooltipText: "drag to rearrange",
+          cornerRadiusBR: 10,
+          cornerRadiusTR: 10
+        });
+        columnTemplate.adapters.add("fill", (fill, target) => {
+          return chart.get("colors").getIndex(series.columns.indexOf(target));
+        });
+        
+        columnTemplate.adapters.add("stroke", (stroke, target) => {
+          return chart.get("colors").getIndex(series.columns.indexOf(target));
+        });
+        
+        columnTemplate.events.on("dragstop", () => {
+          sortCategoryAxis();
+        });
+        
+        // Get series item by category
+        function getSeriesItem(category) {
+          for (var i = 0; i < series.dataItems.length; i++) {
+            var dataItem = series.dataItems[i];
+            if (dataItem.get("categoryY") == category) {
+              return dataItem;
+            }
+          }
+        }
+        
+        
+        // Axis sorting
+        function sortCategoryAxis() {
+          // Sort by value
+          series.dataItems.sort(function (x, y) {
+            return y.get("graphics").y() - x.get("graphics").y();
+          });
+        
+          var easing = am5.ease.out(am5.ease.cubic);
+        
+          // Go through each axis item
+          am5.array.each(yAxis.dataItems, function (dataItem) {
+            // get corresponding series item
+            var seriesDataItem = getSeriesItem(dataItem.get("category"));
+        
+            if (seriesDataItem) {
+              // get index of series data item
+              var index = series.dataItems.indexOf(seriesDataItem);
+        
+              var column = seriesDataItem.get("graphics");
+        
+              // position after sorting
+              var fy =
+                yRenderer.positionToCoordinate(yAxis.indexToPosition(index)) -
+                column.height() / 2;
+        
+              // set index to be the same as series data item index
+              if (index != dataItem.get("index")) {
+                dataItem.set("index", index);
+        
+                // current position
+                var x = column.x();
+                var y = column.y();
+        
+                column.set("dy", -(fy - y));
+                column.set("dx", x);
+        
+                column.animate({ key: "dy", to: 0, duration: 600, easing: easing });
+                column.animate({ key: "dx", to: 0, duration: 600, easing: easing });
+              } else {
+                column.animate({ key: "y", to: fy, duration: 600, easing: easing });
+                column.animate({ key: "x", to: 0, duration: 600, easing: easing });
+              }
+            }
+          });
+        
+          // Sort axis items by index.
+          // This changes the order instantly, but as dx and dy is set and animated,
+          // they keep in the same places and then animate to true positions.
+          yAxis.dataItems.sort(function (x, y) {
+            return x.get("index") - y.get("index");
+          });
+        }
+        
+        // Set data
+        var data = [{
+          YEARS_EMPLOYED: "45-50",
+          value: 24
+        }, {
+          YEARS_EMPLOYED: "40-45",
+          value: 210
+        }, {
+          YEARS_EMPLOYED: "35-40",
+          value: 832
+        }, {
+          YEARS_EMPLOYED: "30-35",
+          value: 1939
+        }, {
+          YEARS_EMPLOYED: "25-30",
+          value: 3307
+        }, {
+          YEARS_EMPLOYED: "20-25",
+          value: 6242
+        }, {
+          YEARS_EMPLOYED: "15-20",
+          value: 10849
+        }, {
+          YEARS_EMPLOYED: "10-15",
+          value: 27548
+        }, {
+          YEARS_EMPLOYED: "5-10",
+          value: 64869
+        }, {
+          YEARS_EMPLOYED: "0-5",
+          value: 136303
+        }];
+        
+        yAxis.data.setAll(data);
+        series.data.setAll(data);
+        
+        
+        // Make stuff animate on load
+        // https://www.amcharts.com/docs/v5/concepts/animations/
+        series.appear(1000);
+        chart.appear(1000, 100);
+        
+        }); // end am5.ready()
+        </script>
+        
+        <!-- HTML -->
+        <div id="chartdiv3"></div>
+        
+        <br><br><br>
+        <p class="w3-xxxlarge" style="color:#323948;">此顧客的居住所在地評分: {{arg5}}</p>
+        
+        
+        <!-- Styles -->
+        <style>
+        #chartdiv4 {
+          width: 100%;
+          height: 500px;
+        }
+        </style>
+        
+        <!-- Resources -->
+        <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+        <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+        <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+        
+        <!-- Chart code -->
+        <script>
+        am5.ready(function() {
+        
+        // Create root element
+        // https://www.amcharts.com/docs/v5/getting-started/#Root_element
+        var root = am5.Root.new("chartdiv4");
+        
+        // Set themes
+        // https://www.amcharts.com/docs/v5/concepts/themes/
+        root.setThemes([
+          am5themes_Animated.new(root)
+        ]);
+        
+        var data = [{
+          name: "評級一",
+          steps: 32197,
+          pictureSettings: {
+            src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_QxzFeCGFf510gd0G_ZWU3auXPGESAZ2_fQ&usqp=CAU"
+          }
+        }, {
+          name: "評級二",
+          steps: 226971,
+          pictureSettings: {
+            src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgz6VeidXMDK6Hwgicl93YkHhwFZO13_0Vgg&usqp=CAU"
+          }
+        }, {
+          name: "評級三",
+          steps: 48329,
+          pictureSettings: {
+            src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRblF013-EcbVUnAhG5oyntdHsGaHrJ7LYHxA&usqp=CAU"
+          }
+        }];
+        
+        // Create chart
+        // https://www.amcharts.com/docs/v5/charts/xy-chart/
+        var chart = root.container.children.push(
+          am5xy.XYChart.new(root, {
+            panX: false,
+            panY: false,
+            wheelX: "none",
+            wheelY: "none",
+            paddingBottom: 50,
+            paddingTop: 40
+          })
+        );
+        
+        // Create axes
+        // https://www.amcharts.com/docs/v5/charts/xy-chart/axes/
+        
+        var xRenderer = am5xy.AxisRendererX.new(root, {});
+        xRenderer.grid.template.set("visible", false);
+        
+        var xAxis = chart.xAxes.push(
+          am5xy.CategoryAxis.new(root, {
+            paddingTop:40,
+            categoryField: "name",
+            renderer: xRenderer
+          })
+        );
+        
+        
+        var yRenderer = am5xy.AxisRendererY.new(root, {});
+        yRenderer.grid.template.set("strokeDasharray", [3]);
+        
+        var yAxis = chart.yAxes.push(
+          am5xy.ValueAxis.new(root, {
+            min: 0,
+            renderer: yRenderer
+          })
+        );
+        
+        // Add series
+        // https://www.amcharts.com/docs/v5/charts/xy-chart/series/
+        var series = chart.series.push(
+          am5xy.ColumnSeries.new(root, {
+            name: "Income",
+            xAxis: xAxis,
+            yAxis: yAxis,
+            valueYField: "steps",
+            categoryXField: "name",
+            sequencedInterpolation: true,
+            calculateAggregates: true,
+            maskBullets: false,
+            tooltip: am5.Tooltip.new(root, {
+              dy: -30,
+              pointerOrientation: "vertical",
+              labelText: "{valueY}"
+            })
+          })
+        );
+        
+        series.columns.template.setAll({
+          strokeOpacity: 0,
+          cornerRadiusBR: 10,
+          cornerRadiusTR: 10,
+          cornerRadiusBL: 10,
+          cornerRadiusTL: 10,
+          maxWidth: 50,
+          fillOpacity: 0.8
+        });
+        
+        var currentlyHovered;
+        
+        series.columns.template.events.on("pointerover", function (e) {
+          handleHover(e.target.dataItem);
+        });
+        
+        series.columns.template.events.on("pointerout", function (e) {
+          handleOut();
+        });
+        
+        function handleHover(dataItem) {
+          if (dataItem && currentlyHovered != dataItem) {
+            handleOut();
+            currentlyHovered = dataItem;
+            var bullet = dataItem.bullets[0];
+            bullet.animate({
+              key: "locationY",
+              to: 1,
+              duration: 600,
+              easing: am5.ease.out(am5.ease.cubic)
+            });
+          }
+        }
+        
+        function handleOut() {
+          if (currentlyHovered) {
+            var bullet = currentlyHovered.bullets[0];
+            bullet.animate({
+              key: "locationY",
+              to: 0,
+              duration: 600,
+              easing: am5.ease.out(am5.ease.cubic)
+            });
+          }
+        }
+        
+        var circleTemplate = am5.Template.new({});
+        
+        series.bullets.push(function (root, series, dataItem) {
+          var bulletContainer = am5.Container.new(root, {});
+          var circle = bulletContainer.children.push(
+            am5.Circle.new(
+              root,
+              {
+                radius: 34
+              },
+              circleTemplate
+            )
+          );
+        
+          var maskCircle = bulletContainer.children.push(
+            am5.Circle.new(root, { radius: 27 })
+          );
+        
+          // only containers can be masked, so we add image to another container
+          var imageContainer = bulletContainer.children.push(
+            am5.Container.new(root, {
+              mask: maskCircle
+            })
+          );
+        
+          var image = imageContainer.children.push(
+            am5.Picture.new(root, {
+              templateField: "pictureSettings",
+              centerX: am5.p50,
+              centerY: am5.p50,
+              width: 60,
+              height: 60
+            })
+          );
+        
+          return am5.Bullet.new(root, {
+            locationY: 0,
+            sprite: bulletContainer
+          });
+        });
+        
+        // heatrule
+        series.set("heatRules", [
+          {
+            dataField: "valueY",
+            min: am5.color(0xe5dc36),
+            max: am5.color(0x5faa46),
+            target: series.columns.template,
+            key: "fill"
+          },
+          {
+            dataField: "valueY",
+            min: am5.color(0xe5dc36),
+            max: am5.color(0x5faa46),
+            target: circleTemplate,
+            key: "fill"
+          }
+        ]);
+        
+        series.data.setAll(data);
+        xAxis.data.setAll(data);
+        
+        var cursor = chart.set("cursor", am5xy.XYCursor.new(root, {}));
+        cursor.lineX.set("visible", false);
+        cursor.lineY.set("visible", false);
+        
+        cursor.events.on("cursormoved", function () {
+          var dataItem = series.get("tooltip").dataItem;
+          if (dataItem) {
+            handleHover(dataItem);
+          } else {
+            handleOut();
+          }
+        });
+        
+        // Make stuff animate on load
+        // https://www.amcharts.com/docs/v5/concepts/animations/
+        series.appear();
+        chart.appear(1000, 100);
+        
+        }); // end am5.ready()
+        </script>
+        
+        <!-- HTML -->
+        <div id="chartdiv4"></div>
+      
+    </div>
+    <br>
+
+  <script>
+    // Script to open and close sidebar
+    function w3_open() {
+      document.getElementById("mySidebar").style.display = "block";
+      document.getElementById("myOverlay").style.display = "block";
+    }
+
+    function w3_close() {
+      document.getElementById("mySidebar").style.display = "none";
+      document.getElementById("myOverlay").style.display = "none";
+    }
+
+    // Modal Image Gallery
+    function onClick(element) {
+      document.getElementById("img01").src = element.src;
+      document.getElementById("modal01").style.display = "block";
+      var captionText = document.getElementById("caption");
+      captionText.innerHTML = element.alt;
+    }
+  </script>
+
+</body>
+
+</html>

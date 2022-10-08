@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Data_Process-智慧型信用貸款違約預測與評估系統</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="本系統可以提供金融機構貸款部門更有效的預測顧客違約發生事件">
+  <link rel="icon" href="/static//static/images">
+  <link rel="stylesheet" href="/static/w3.css">
+  
+  <!-- <link rel="stylesheet" href="w3.css"> -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+  <style>
+    te body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
+ 
+    body {
+      font-size: 16px;
+      background-color:#323948 ;
+    }
+
+    .w3-padding-64 {
+      color: #34495E;
+      font-size: 40px;
+    }
+
+    .w3-half img {
+      margin-bottom: -6px;
+      margin-top: 16px;
+      opacity: 0.8;
+      cursor: pointer
+    }
+
+    .w3-half img:hover {
+      opacity: 1
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Sidebar/menu -->
+  <nav class="w3-sidebar w3-dark-gray w3-collapse w3-top w3-large w3-padding width:350px"
+    style="z-index:3;width:300px;font-weight:bold;" id="mySidebar">
+    <br>
+    <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft"
+      style="width:100%;font-size:22px">Close Menu</a>
+
+    <div class="w3-bar-block" style="margin-top: 20px;">
+      <a href="/" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-#ebeef1"
+        style="color:#ebeef1;font-size:24px;">前言</a>
+      <a href="/data-review" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-#ebeef1"
+        style="color:#ebeef1;font-size:24px;">資料集介紹</a>
+      <a href="/data-process" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-#ebeef1 w3-white"
+        style="color:#ebeef1;font-size:24px;">資料預處理</a>
+        <a href="/machine-learning" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-#ebeef1"
+        style="color:#ebeef1;font-size:24px;">機器學習</a>
+      <a href="/Conclusion" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-#ebeef1" style="color:#ebeef1;font-size:24px;">總結</a>
+      <a href="/interaction" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-#ebeef1"
+        style="color:#ebeef1;font-size:24px;">信用評級檢測互動區</a>
+    </div>
+  </nav>
+
+  <!-- Top menu on small screens -->
+  <header class="w3-container w3-top w3-hide-large w3-dark-gray w3-xlarge w3-padding ">
+    <a href="javascript:void(0)" class="w3-button w3-margin-right" style="color:#ebeef1" onclick="w3_open()">☰</a>
+    <span style="color: #F4DB7D"><b>智慧型信用貸款違約預測與評估系統</b></span></span>
+  </header>
+
+  <!-- Overlay effect when opening sidebar on small screens -->
+  <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu"
+    id="myOverlay"></div>
+
+  <!-- !PAGE CONTENT! -->
+  <div class="w3-main" style="margin-left:340px;margin-right:40px">
+
+    <!-- Header -->
+    <div class="header">
+      <h1 class="w3-jumbo w3-hide-medium w3-hide-small"><b>智慧型信用貸款違約預測與評估系統</b></h1>
+    </div>
+
+    <!-- Services -->
+    <div class="w3-container" id="services" style="margin-top:55px;margin-right: 30px;">
+      <h1 class="w3-xxxlarge" style="margin-top: 40px;"><b>資料預處理流程</b></h1>
+
+      <div class="w3-xlarge" >
+        <p style="margin-left:30px">在進入機器學習前，本組採取七大步驟預先處理資料。</p>
+        <p style="width:80%; margin-left:30px ;text-align: left" >
+              <li>資料清理&填補</li>
+              <li>欄位刪除</li>
+              <li>資料整合</li>
+              <li>欄位整合</li>
+              <li>類常態處理</li>
+              <li>資料編碼</li>
+              <li>標準化處理</li>
+        </p>
+
+      <p class="w3-xxlarge">以下就各步驟分別說明：</p>
+      <div class="w3-xxlarge">
+        <p>資料清理&填補</p>
+      </div>
+      <div class="w3-xlarge" style="margin-left:30px">
+        <p>透過資料觀察，找出存在null值的欄位，並將其由高比例到小比例做排序</p>
+        <img src="/static/images/image_11_01.jpg" alt="計算null比例">
+        <p>首先，將徵信次數、車齡、建築物評分資訊的null值填補為0；<br>
+        其次，將類別欄位的null值超出10%的以其他字串（other）填補；<br>
+        最後，其餘欄位的null值分別使用中位數（數值）、眾數（類別）填補。</p>
+      </div>
+      
+      <br>
+      <div class="w3-xxlarge">
+        <p>欄位刪除</p>
+      </div>
+      <div class="w3-xlarge" style="margin-left:30px">
+        <p>經過測試X輸入變數間的相關性後，我們將相關係數大於0.8的欄位予以刪除。
+          本組亦將公寓之平均數、中位數與眾數兩兩配對測試其相關性，下方散佈圖皆呈左下往右上的直線趨勢，顯示兩變數之間存在正相關性。</p>
+ 
+        <img src="/static/images/image_12_00.jpg" alt="散佈圖1">
+        <br><br>
+        <img src="/static/images/image_12_02.jpg" alt="散佈圖2">
+        <br><br>
+        <img src="/static/images/image_12_03.jpg" alt="散佈圖3">
+      </div>
+
+      <br>
+      <div class="w3-xxlarge">
+        <p>資料整合</p>
+      </div>
+      <div class="w3-xlarge" style="margin-left:30px">
+        <p>原資料集之貸款申請日呈現方式為週一至週日，我們將其整合為工作日（週一至週五）及週末日（週六與週日）。</p>
+        <img src="/static/images/day_change.png" alt="整合前後的申請日">
+        <p>貸款申請時間原本呈現方式為零時至廿三時，本組將其整合為四個區段：<br>凌晨（1～6）、早上（7～12）、下午（13～18）、晚上（19～0）。</p>
+        <img src="/static/images/time_before.png" alt="整合前的申請時間">
+        <br><br>
+        <img src="/static/images/time_after.png" alt="整合後的申請時間">
+      </div>
+
+      <br>
+      <div class="w3-xxlarge">
+        <p>類常態處理</p>
+      </div>
+        <div class="w3-xlarge" style="margin-left:30px">
+          <p>針對偏度超過0.5的欄位做類常態處理，以降低之後測試模型的誤差。</p>
+          <img src="\static\images\find_skewness.png" alt="找尋偏度">
+          <p>下圖為分別將欄位轉換成平方根、倒數、對數，並觀察其效果。</p>
+          <img src="\static\images\change_setting.png" alt="轉換的設定">
+          <br><br>
+          <img src="\static\images\change_log.png" alt="對數轉換">
+          <br><br>
+          <img src="\static\images\change_squareroot.png" alt="平方根轉換">
+          <br><br>
+          <img src="\static\images\change_reciprocal.png" alt="倒數轉換">
+          <p>經觀察轉換前後的圖表分布，最終將收入使用倒數轉換、註冊日期使用平方根轉換，其餘需轉換的欄位皆使用對數轉換。</p>
+          <img src="\static\images\change_skewness.png" alt="需轉換的欄位都轉換">
+        </div>
+
+
+      <br>
+      <div class="w3-xxlarge">
+        <p>資料編碼</p>
+      </div>
+        <div class="w3-xlarge" style="margin-left:30px">
+          <p>因電腦無法辨識類別型的欄位資料，須將類別欄位轉換成編碼來做使用。</p>
+          <img src="\static\images\label_encoding_1.png" alt="資料編碼1">
+          <img src="\static\images\label_encoding_2.png" alt="資料編碼2">
+        </div>
+
+      <br>
+      <div class="w3-xxlarge">
+        <p>標準化處理</p>
+      </div>
+        <div class="w3-xlarge" style="margin-left:30px">
+          <p>考量到每一個變數的數值大小皆不相同，不因變數有較大的數值範圍而影響到較多的預測值，
+            故將每一個變數進行區間係數調整至0.2~0.8，使每一個變數間的重要性相同。</p>
+          <img src="\static\images\change_interval.png" alt="標準化">
+        </div>
+
+
+      <!-- End page content -->
+    </div>
+
+    <br>
+    <script>
+      // Script to open and close sidebar
+      function w3_open() {
+        document.getElementById("mySidebar").style.display = "block";
+        document.getElementById("myOverlay").style.display = "block";
+      }
+
+      function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+        document.getElementById("myOverlay").style.display = "none";
+      }
+
+      // Modal Image Gallery
+      function onClick(element) {
+        document.getElementById("img01").src = element.src;
+        document.getElementById("modal01").style.display = "block";
+        var captionText = document.getElementById("caption");
+        captionText.innerHTML = element.alt;
+      }
+    </script>
+
+</body>
+
+</html>

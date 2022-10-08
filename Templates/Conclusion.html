@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Conclusion-智慧型信用貸款違約預測與評估系統</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="本系統可以提供金融機構貸款部門更有效的預測顧客違約發生事件">
+  <link rel="icon" href="/static//static/images">
+  <link rel="stylesheet" href="/static/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+  <style>te 
+    body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
+    body {
+      font-size: 16px;
+      background-color:#323948 ;
+    }
+    .tr{
+      background-color: #ebeef1;
+    }
+    .w3-half img {
+      margin-bottom: -6px;
+      margin-top: 16px;
+      opacity: 0.8;
+      cursor: pointer
+    }
+    .w3-half img:hover {
+      opacity: 1
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Sidebar/menu -->
+  <nav class="w3-sidebar w3-dark-gray w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;"
+    id="mySidebar"><br>
+    <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft"
+      style="width:100%;font-size:22px">Close Menu</a>
+    <div class="w3-bar-block" style="margin-top: 20px;">
+      <a href="/" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-#ebeef1"
+        style="color:#ebeef1;font-size:24px;">前言</a>
+      <a href="/data-review" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-#ebeef1"
+        style="color:#ebeef1;font-size:24px;">資料集介紹</a>
+      <a href="/data-process" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-#ebeef1"
+        style="color:#ebeef1;font-size:24px;">資料預處理</a>
+      <a href="/machine-learning" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-#ebeef1"
+        style="color:#ebeef1;font-size:24px;">機器學習</a>
+      <!-- <a href="/choose_model" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-#ebeef1" style="color:#ebeef1;font-size:24px">模型選定</a> -->
+      <a href="/Conclusion" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-#ebeef1 w3-white" style="color:#ebeef1;font-size:24px;">總結</a>
+      <a href="/interaction" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-#ebeef1"
+        style="color:#ebeef1;font-size:24px;">信用評級檢測互動區</a>
+    </div>
+  </nav>
+
+ <!-- Top menu on small screens -->
+  <header class="w3-container w3-top w3-hide-large w3-dark-gray w3-xlarge w3-padding ">
+    <a href="javascript:void(0)" class="w3-button w3-margin-right" style="color:#ebeef1" onclick="w3_open()">☰</a>
+    <span style="color: #F4DB7D"><b>智慧型信用貸款違約預測與評估系統</b></span></span>
+  </header>
+
+  <!-- Overlay effect when opening sidebar on small screens -->
+  <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu"
+    id="myOverlay"></div>
+
+  <!-- !PAGE CONTENT! -->
+  <div class="w3-main" style="margin-left:340px;margin-right:40px">
+
+    <!-- Header -->
+    <div class="header">
+      <h1 class="w3-jumbo w3-hide-medium w3-hide-small"><b>智慧型信用貸款違約預測與評估系統</b></h1>
+    </div>
+
+
+    <!-- Contact -->
+    <div class="w3-container" id="contact" style="margin-top:55px">
+      
+        <h1 class="w3-xxxlarge"  style="margin-top: 40px;"><b>總結(管理意涵)</b></h1><br>
+      <div class="level1">
+        <h2 class="w3-xxlarge">關鍵決策因子：</h2>
+        <div class="w3-xlarge" style="margin-left:30px">
+          <p>綜觀機器學習與模型選定過程說明，可得出雇用年資、教育類別、外部文件評分、所在居住地區評分等4項為決定顧客是否違約重要關鍵因子。</p>
+        </div>
+      </div>
+      <div class="level2">
+        <br>
+        <h2 class="w3-xxlarge">相關應用：</h2>
+        <div class="w3-xlarge" style="margin-left:30px">
+          <p>本組系統不僅可幫助銀行與金融貸款機構妥善利用客戶信用紀錄、財務資料等數據，運用統計和機器學習技術建模有效計算出貸款人評分，預測客戶未來違約、拖欠債務的發生機會，降低放貸方的借貸風險，並以快速、有效的方式協助放貸決策。</p>
+          <p>展望未來，亦可延伸運用於「詐欺檢測」（開發反欺詐解決方案，並透過詐欺模式檢測以預防犯罪行為），更可以跨領域應用在「不良率檢測」（生產檢測系統，優化品管質檢工作）、「預防醫學」（判讀病人發生癌症或重大疾病機率用以提前防範）。</p>
+        </div>
+      </div>
+      <br>
+      <div class="表格">
+        <h1 class="w3-xxxlarge"><b>成員與分工 Work Distribution</b></h1>
+        <table border="1" cellpadding="10" align="center">
+          <tr bgcolor="#ECE0BA">
+            <td align="center">姓名</td>
+            <td align="center">專長</td>
+            <td align="center">專案分工</td>
+          </tr>
+            <tr class="tr">
+              <td>洪世國</td>
+              <td>系統分析、程式設計、專案管理、AI應用、資料科學、模型、架構</td>
+              <td align="center">特徵工程、模型、程式開發、任務分派</td>
+
+            </tr>
+            <tr class="tr">
+              <td>李冠廷</td>
+              <td>Python、MySQL、數據分析、資料清洗、資料科學、演算法</td>
+              <td align="center">資料清理、特徵工程、程式開發、簡報</td>
+            </tr>
+            <tr class="tr">
+              <td>楊紫瑄</td>
+              <td>數據分析、統計應用、Python、MySQL、HTML(CSS)</td>
+              <td align="center">簡報製作、模型測試、網站前端、簡報</td>
+            </tr>
+            <tr class="tr">
+              <td>鄒惠瑛</td>
+              <td>外文（英日德法）、活動策劃、計畫管理</td>
+              <td align="center">簡報製作、文稿編修</td>
+            </tr>
+            <tr class="tr">
+              <td>黃彥翔</td>
+              <td>數據分析、資料科學、資訊管理、Python、MySQL、HTML(CSS)</td>
+              <td align="center">模型測試、網站前端</td>
+            </tr>
+            <tr class="tr">
+              <td>王芳瑜</td>
+              <td>資訊管理、Python、MySQL、HTML(CSS)</td>
+              <td align="center">簡報製作、模型測試、網站前端</td>
+            </tr>
+            <tr class="tr">
+              <td>王天舟</td>
+              <td>Python、MySQL、數據分析、資料清洗、資料科學、演算法</td>
+              <td align="center">組長、任務協調、模型測試</td>
+            </tr>
+            <tr class="tr">
+              <td>蘇子芸</td>
+              <td>財務金融、統計科學、品牌行銷、Python、MySQL</td>
+              <td align="center">簡報製作、模型測試</td>
+            </tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- End page content -->
+  </div>
+
+  <br>
+
+
+  <script>
+    // Script to open and close sidebar
+    function w3_open() {
+      document.getElementById("mySidebar").style.display = "block";
+      document.getElementById("myOverlay").style.display = "block";
+    }
+
+    function w3_close() {
+      document.getElementById("mySidebar").style.display = "none";
+      document.getElementById("myOverlay").style.display = "none";
+    }
+
+    // Modal Image Gallery
+    function onClick(element) {
+      document.getElementById("img01").src = element.src;
+      document.getElementById("modal01").style.display = "block";
+      var captionText = document.getElementById("caption");
+      captionText.innerHTML = element.alt;
+    }
+  </script>
+
+</body>
+
+</html>

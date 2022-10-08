@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Machine_Learing-智慧型信用貸款違約預測與評估系統</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="本系統可以提供金融機構貸款部門更有效的預測顧客違約發生事件">
+  <link rel="icon" href="/static//static/images">
+  <link rel="stylesheet" href="/static/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+  <style>
+    te body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
+ 
+    body {
+      font-size: 16px;
+      background-color:#323948 ;
+    }
+
+    .w3-half img {
+      margin-bottom: -6px;
+      margin-top: 16px;
+      opacity: 0.8;
+      cursor: pointer
+    }
+
+    .w3-half img:hover {
+      opacity: 1
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Sidebar/menu -->
+  <nav class="w3-sidebar w3-dark-gray w3-collapse w3-top w3-large w3-padding width:350px"
+    style="z-index:3;width:300px;font-weight:bold;" id="mySidebar">
+    <br>
+    <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft"
+      style="width:100%;font-size:22px">Close Menu</a>
+
+      <div class="w3-bar-block" style="margin-top: 20px;">
+        <a href="/" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-#ebeef1"
+          style="color:#ebeef1;font-size:24px;">前言</a>
+        <a href="/data-review" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-#ebeef1"
+          style="color:#ebeef1;font-size:24px;">資料集介紹</a>
+        <a href="/data-process" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-#ebeef1"
+          style="color:#ebeef1;font-size:24px;">資料預處理</a>
+        <a href="/machine-learning" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-#ebeef1 w3-white"
+          style="color:#ebeef1;font-size:24px;">機器學習</a>
+        <a href="/Conclusion" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-#ebeef1" style="color:#ebeef1;font-size:24px;">總結</a>
+        <a href="/interaction" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-#ebeef1"
+          style="color:#ebeef1;font-size:24px;">信用評級檢測互動區</a>
+      </div>
+  </nav>
+
+  <!-- Top menu on small screens -->
+  <header class="w3-container w3-top w3-hide-large w3-dark-gray w3-xlarge w3-padding ">
+    <a href="javascript:void(0)" class="w3-button w3-margin-right" style="color:#ebeef1" onclick="w3_open()">☰</a>
+    <span style="color: #F4DB7D"><b>智慧型信用貸款違約預測與評估系統</b></span></span>
+  </header>
+
+  <!-- Overlay effect when opening sidebar on small screens -->
+  <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu"
+    id="myOverlay"></div>
+
+  <!-- !PAGE CONTENT! -->
+  <div class="w3-main" style="margin-left:340px;margin-right:40px">
+
+    <!-- Header -->
+    <div class="header">
+      <h1 class="w3-jumbo w3-hide-medium w3-hide-small"><b>智慧型信用貸款違約預測與評估系統</b></h1>
+    </div>
+
+    <!-- Services -->
+    <div class="w3-container" id="services" style="margin-top:55px;margin-right: 30px;">
+      <h1 class="w3-xxxlarge"  style="margin-top: 40px;"><b>機器學習</b></h1>
+
+      <div class="w3-xxlarge">
+        <p>上採樣（Oversampling）前後的模型表現對比。</p>
+            <div class="w3-xlarge" style="margin-left:30px">
+                <p>本組將資料集劃分70%用於訓練，30%用於測試。因本組資料集存在極度不平衡，若沒有搭配上抽樣來進行
+                  機器學習時，會呈現模型只學習到未違約的行為，無法精準找出違約的顧客，故使用上採樣後，可以將原先92:8的違約資料採樣為1:1，使得模型可以學習到違約的行為模式。</p>
+                <p>上採樣前的模型表現</p>
+                <img src="/static/images/image_14_01.png" alt="上採樣前模型">
+                <p>上採樣後明顯可見各個模型於召回率（recall）及調和參數（F1 score）的數值明顯上升。隨機森林於召回率表現最佳，而DNN、XGBoost於整體參數也有不錯的表現。</p>
+                <img src="/static/images/image_14_02.png" alt="上採樣後模型">
+            </div>
+
+        <p>集群分析</p>
+            <div class="w3-xlarge" style="margin-left:30px">
+                <p>在機器學習中，我們先利用演算法將欄位進行集群分析，得到貸款資訊、變更資訊、收入狀態、房屋評分以及信用查詢次數五項具備代表性的指標，下圖亦詳列各集群來源欄位。</p>
+                <img src="/static/images/image_16_01_1.png" alt="集群圖片">
+                <br><br>
+                <p>下一步我們用集群後的資料欄位輸入模型測試，得到處理前後的準確率比較值（上表為集群前結果，下表為集群後結果）。</p>
+                <img src="/static/images/image_17_01.png" alt="集群前">
+                <br><br>
+                <img src="/static/images/image_17_02.png" alt="集群後">
+                <p>比較上述二表可見，在XGBoost中，各項指標都有較佳的表現，召回率（recall）、調和參數（F1 score）的準確率都有所提升。</p>
+            </div>
+        
+        <p>特徵工程</p>
+            <div class="w3-xlarge" style="margin-left:30px">
+                <p>透過集群分析的使用，我們將原先60個欄位縮減至35個，並且獲得比原先更高的準確率。若要在持續減少欄位的情況下維持準確率，就必須結合特徵工程的挑選特徵。</p>
+                <p>分別採用三種特徵工程來進行變數的篩選。</p>
+                <p class="w3-xxlarge">特徵工程一：Wrapper</p>
+                <p>使用Wrapperr進行篩選，將35個變數篩選至17個變數，並使用XGBoost進行模型訓練。</p>
+                <img src="/static/images/image_19_01_1.png" alt="特徵工程一模型">
+                <br><br>
+                <p class="w3-xxlarge">特徵工程二：SelectKBest</p>
+                <p>使用SelectKBest得到每一個變數的分數後，分別選擇排行前15、前7、前5的變數，並使用XGBoost進行模型訓練。</p>
+                <img src="/static/images/image_20_01.png" alt="特徵工程二模型">
+                <br><br>
+                <p class="w3-xxlarge">特徵工程三：Feature Importance</p>
+                <p>使用Feature Importance得到前5個影響因子較高的變數，並使用XGBoost進行模型訓練。</p>
+                <img src="/static/images/image_21_01.png" alt="特徵工程三模型">
+                <br><br>
+                <p>從一開始的資料預處理，經過集群及特徵工程方法，在降低維度的同時，XGBoost仍有維持較高的整體準確率基礎上，
+                召回率（recall）、調和參數（F1 score）亦有相當不錯的表現，最終使用五個變數即可達到原先資料的相似精準度。</p>
+                <p>五個變數：教育程度、外部文件評分(兩個外部機構)、雇用年資、所在居住地區評分</p>
+            </div>
+
+        <p>集成學習</p>
+            <div class="w3-xlarge" style="margin-left:30px">
+                <p>將選擇後的五個特徵，使用集成學習來整合多個模型，解決單一模型高偏誤或高變異引起的問題，測試結果和特徵工程(5)相比，召回率(recall)有所提升。</p>
+                <img src="/static/images/ensemble_learning_model.png" alt="集成學習">
+                <p>下圖為經過資料預處理、機器學習後的整體欄位數及準確率變化趨勢圖。</p>
+                <img src="/static/images/image_23_03.png" alt="所有步驟的比較欄位跟準確">
+            </div>
+      </div>
+      
+    </div>
+      <!-- End page content -->
+    <br>
+    <script>
+      // Script to open and close sidebar
+      function w3_open() {
+        document.getElementById("mySidebar").style.display = "block";
+        document.getElementById("myOverlay").style.display = "block";
+      }
+
+      function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+        document.getElementById("myOverlay").style.display = "none";
+      }
+
+      // Modal Image Gallery
+      function onClick(element) {
+        document.getElementById("img01").src = element.src;
+        document.getElementById("modal01").style.display = "block";
+        var captionText = document.getElementById("caption");
+        captionText.innerHTML = element.alt;
+      }
+    </script>
+
+</body>
+
+</html>
