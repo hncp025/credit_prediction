@@ -1,10 +1,7 @@
-from copyreg import pickle
-import json
 from flask import Flask, request, render_template, jsonify
 import pandas as pd 
 import numpy as np 
 import pickle
-import re
 app = Flask(__name__)
 
 ###
